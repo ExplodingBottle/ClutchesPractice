@@ -1,0 +1,53 @@
+# ClutchesPractice configuration file.
+
+# active-worlds: This parameter set which world will be used and impacted by this plugin
+active-worlds: []
+
+# prevent-player-damages: Makes the player wont recieve damages or hunger
+prevent-player-damages: true
+
+# height-when-failed: The height where we consider that the player failed the clutch
+height-when-failed: 11
+
+# time-before-block-deletes: The time before the block is destroyed after placing it. In ticks.
+time-before-block-deletes: 50
+
+# time-before-first-knockback: The time before the first knockback is sent. In ticks.
+time-before-first-knockback: 40
+
+# cancel-weather-changes: If you want to cancel weather changes.
+cancel-weather-changes: true
+
+# jump-force: The jump force applied by the knockback.
+jump-force: 0.4
+
+# knockback-force: The knockback force.
+knockback-force: 3
+
+# clutch-block: The block used to clutch
+clutch-block: WOOL
+
+# clutch-blocks-amount: The number of clutch blocks that you will recieve
+clutch-blocks-amount: 64
+
+# blocks-allowed: The distance from the spawn where blocks are allowed to be placed.
+blocks-allowed: 2
+
+# command-to-exec-joining: Commands that will be executed when joining active worlds.
+command-to-exec-joining: []
+
+# command-to-exec-leaving: Commands that will be executed when leaving active worlds.
+command-to-exec-leaving: []
+
+# Messages
+no-permission: Sorry, you need permission ${perm} to do this.
+console-summoning: You need to be a player to summon the helper armor stand.
+punch-me: Punch me for knockback.
+helper-added: You have added an helper.
+helper-removed: You have removed an helper.
+non-active-world: You need to set the world ${world} as active to continue.
+near-spawn-placing: You cannot place a block that near from the spawn.
+try-again: Try again.
+
+# prefix: The prefix to put on each message.
+prefix: '&9&l[ClutchesPractice]&r &o'
