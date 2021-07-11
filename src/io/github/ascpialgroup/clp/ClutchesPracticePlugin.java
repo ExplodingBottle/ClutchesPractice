@@ -50,15 +50,15 @@ public class ClutchesPracticePlugin extends JavaPlugin {
 	private void loadTranslations() {
 		getLogger().log(Level.INFO, "Parsing translations...");
 		lTrans = new Translations();
-		lTrans.prefix = config.getString("prefix").replace('&', '§');
-		lTrans.noPermissions = lTrans.prefix + config.getString("no-permission");
-		lTrans.consoleSummoning = config.getString("console-summoning");
-		lTrans.punchMe = config.getString("punch-me");
-		lTrans.helperAdded = lTrans.prefix + config.getString("helper-added");
-		lTrans.helperRemoved = lTrans.prefix + config.getString("helper-removed");
-		lTrans.nonActiveWorld = lTrans.prefix + config.getString("non-active-world");
-		lTrans.nearSpawnPlacing = lTrans.prefix + config.getString("near-spawn-placing");
-		lTrans.tryAgain = lTrans.prefix + config.getString("try-again");
+		lTrans.prefix = loadTranslation("prefix", false);
+		lTrans.noPermissions = loadTranslation("no-permission", true);
+		lTrans.consoleSummoning = loadTranslation("console-summoning", false);
+		lTrans.punchMe = loadTranslation("punch-me", false);
+		lTrans.helperAdded = loadTranslation("helper-added", true);
+		lTrans.helperRemoved = loadTranslation("helper-removed", true);
+		lTrans.nonActiveWorld = loadTranslation("non-active-world", true);
+		lTrans.nearSpawnPlacing = loadTranslation("near-spawn-placing", true);
+		lTrans.tryAgain = loadTranslation("try-again", true);
 		getLogger().log(Level.INFO, "Translations parsed.");
 	}
 
@@ -80,6 +80,16 @@ public class ClutchesPracticePlugin extends JavaPlugin {
 		lConfig.commandsToExecLeave = config.getStringList("command-to-exec-leaving");
 		getLogger().log(Level.INFO, "Configuration parsed.");
 
+	}
+
+	private String loadTranslation(String messageKey, boolean appendPrefix) {
+		String toRet = config.getString(messageKey);
+		if (toRet == null)
+			toRet = messageKey;
+		toRet = toRet.replace('&', '§');
+		if (appendPrefix)
+			toRet = lTrans.prefix + toRet;
+		return toRet;
 	}
 
 	private void saveArmorStandsConf() {
@@ -106,6 +116,18 @@ public class ClutchesPracticePlugin extends JavaPlugin {
 		cleanupUnusedRefs();
 		Bukkit.getPluginManager().registerEvents(new EventsHandlerClp(this, lConfig, lTrans), this);
 		getCommand("summonhelper").setExecutor(new CommandsHandler(this, lConfig, lTrans));
+	}
+
+	@Override
+	public void onDisable() {
+		getLogger().log(Level.INFO, "Executing delayed tasks...");
+		delayedTasks.forEach(task -> {
+			task.cancel();
+			task.run();
+		});
+		getLogger().log(Level.INFO, "Delayed tasks executed.");
+		HandlerList.unregisterAll(this);
+		saveArmorStandsConf();
 	}
 
 	public void registerNewArmorStandIfNotExisting(UUID uuid) {
@@ -154,18 +176,6 @@ public class ClutchesPracticePlugin extends JavaPlugin {
 			armorStands.remove(uuid.toString());
 		}
 		armorStandsConf.set("armorStands", armorStands);
-	}
-
-	@Override
-	public void onDisable() {
-		getLogger().log(Level.INFO, "Executing delayed tasks...");
-		delayedTasks.forEach(task -> {
-			task.cancel();
-			task.run();
-		});
-		getLogger().log(Level.INFO, "Delayed tasks executed.");
-		HandlerList.unregisterAll(this);
-		saveArmorStandsConf();
 	}
 
 }

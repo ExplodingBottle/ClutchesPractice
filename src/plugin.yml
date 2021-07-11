@@ -1,6 +1,6 @@
 main: io.github.ascpialgroup.clp.ClutchesPracticePlugin
 name: ClutchesPractice
-version: 1.0.0
+version: 1.0.1
 description: This plugin adds a system to learn to clutch.
 load: POSTWORLD
 author: ASCPIAL Group
