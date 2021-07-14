@@ -112,9 +112,8 @@ public class EventsHandlerClp implements Listener {
 		if (config.activeWorlds.contains(e.getPlayer().getWorld().getName())) {
 			if (e.getTo().getBlockY() <= config.failedHeight & e.getPlayer().getGameMode() != GameMode.CREATIVE) {
 				e.getPlayer().sendMessage(lTrans.tryAgain);
-				e.getPlayer().teleport(e.getPlayer().getWorld().getSpawnLocation());
-				e.getPlayer().getInventory().clear();
-				e.getPlayer().getInventory().addItem(new ItemStack(config.clutchBlockType, config.clutchBlocksAmount));
+
+				resetPlayer(e.getPlayer());
 			}
 
 		}
@@ -123,7 +122,11 @@ public class EventsHandlerClp implements Listener {
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onJoin(PlayerJoinEvent e) {
 		if (config.activeWorlds.contains(e.getPlayer().getWorld().getName())) {
-			e.getPlayer().teleport(e.getPlayer().getWorld().getSpawnLocation());
+			// Joining world
+			config.commandsToExecJoin.forEach(command -> {
+				e.getPlayer().performCommand(command);
+			});
+			resetPlayer(e.getPlayer());
 		}
 
 	}
@@ -140,18 +143,13 @@ public class EventsHandlerClp implements Listener {
 					});
 				}
 			}
-			if (!config.activeWorlds.contains(e.getFrom().getWorld().getName())) {
-				if (config.activeWorlds.contains(e.getTo().getWorld().getName())) {
-					// Joining world
-					config.commandsToExecJoin.forEach(command -> {
-						e.getPlayer().performCommand(command);
-					});
-					e.getPlayer().getInventory().clear();
-					e.getPlayer().getInventory()
-							.addItem(new ItemStack(config.clutchBlockType, config.clutchBlocksAmount));
-				}
-			}
 		}
+	}
+
+	private void resetPlayer(Player p) {
+		p.teleport(p.getWorld().getSpawnLocation());
+		p.getInventory().clear();
+		p.getInventory().addItem(new ItemStack(config.clutchBlockType, config.clutchBlocksAmount));
 	}
 
 	@EventHandler(priority = EventPriority.LOWEST)
