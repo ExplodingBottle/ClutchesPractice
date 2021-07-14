@@ -1,32 +1,37 @@
 main: io.github.ascpialgroup.clp.ClutchesPracticePlugin
 name: ClutchesPractice
-version: 1.0.1
+version: 1.0.2
 description: This plugin adds a system to learn to clutch.
 load: POSTWORLD
 author: ASCPIAL Group
 website: ascpialgroup.github.io
 
 commands:
-   summonhelper:
-      description: This command summon the helper armor stand for practice.
-      usage: /<command>
-      permission: clp.summonhelper
-      permission-message: Sorry, you need permission <permission> to do this.
-
+  clutchespractice:
+    description: This command allows you to do everything with this plugin.
+    usage: /<command>
+    permission: clp.maincommand
+    permission-message: Sorry, you need permission <permission> to do this.
+    aliases:
+      - clp
 
 permissions:
-    clp.*:
-        description: Gives access to all clutches practice commands
-        children:
-            clp.summonhelper: true
-            clp.removehelper: true
-            clp.breakblocks: true
+  clp.*:
+    description: Gives access to all clutches practice commands.
+    children:
+      clp.summonhelper: true
+      clp.removehelper: true
+      clp.breakblocks: true
+      clp.maincommand: true
     clp.summonhelper:
-        description: Allows you to summon an helper armor stand
-        default: op
+      description: Allows you to summon an helper armor stand.
+      default: op
     clp.removehelper:
-        description: Allows you to remove an helper armor stand
-        default: op
+      description: Allows you to remove an helper armor stand.
+      default: op
     clp.breakblocks:
-        description: Allows you to break blocks in ClutchesPractice active worlds.
-        default: op
+      description: Allows you to break blocks in ClutchesPractice active worlds.
+      default: op
+    clp.maincommand:
+      description: Allows you to use the main command of this plugin.
+      default: op

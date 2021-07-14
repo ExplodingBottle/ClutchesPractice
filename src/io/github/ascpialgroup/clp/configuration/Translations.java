@@ -11,4 +11,6 @@ public class Translations {
 	public String tryAgain;
 	public String prefix;
 	public String noDropping;
+	public String commandNotExisting;
+	public String commandHelpMessage;
 }

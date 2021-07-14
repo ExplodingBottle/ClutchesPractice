@@ -51,6 +51,12 @@ helper-removed: You have removed an helper.
 non-active-world: You need to set the world ${world} as active to continue.
 near-spawn-placing: You cannot place a block that near from the spawn.
 no-drop: You are not allowed to drop items.
+command-non-existing: Please enter a correct option. Try with the help option.
+command-help-message: |+
+  ClutchesPractice Command
+  Options:
+   help: Shows this message
+   summonhelper: Allows you to summon an helper
 try-again: Try again.
 
 # prefix: The prefix to put on each message.

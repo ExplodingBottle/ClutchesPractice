@@ -17,7 +17,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import io.github.ascpialgroup.clp.configuration.LoadedConfiguration;
 import io.github.ascpialgroup.clp.configuration.Translations;
-import io.github.ascpialgroup.clp.listeners.CommandsHandler;
+import io.github.ascpialgroup.clp.listeners.CommandHandler;
+import io.github.ascpialgroup.clp.listeners.CommandTabCompleter;
 import io.github.ascpialgroup.clp.listeners.EventsHandlerClp;
 
 public class ClutchesPracticePlugin extends JavaPlugin {
@@ -52,7 +53,7 @@ public class ClutchesPracticePlugin extends JavaPlugin {
 		lTrans = new Translations();
 		lTrans.prefix = loadTranslation("prefix", false);
 		lTrans.noPermissions = loadTranslation("no-permission", true);
-		lTrans.consoleSummoning = loadTranslation("console-summoning", false);
+		lTrans.consoleSummoning = loadTranslation("console-summoning", true);
 		lTrans.punchMe = loadTranslation("punch-me", false);
 		lTrans.helperAdded = loadTranslation("helper-added", true);
 		lTrans.helperRemoved = loadTranslation("helper-removed", true);
@@ -60,6 +61,8 @@ public class ClutchesPracticePlugin extends JavaPlugin {
 		lTrans.nearSpawnPlacing = loadTranslation("near-spawn-placing", true);
 		lTrans.tryAgain = loadTranslation("try-again", true);
 		lTrans.noDropping = loadTranslation("no-drop", true);
+		lTrans.commandNotExisting = loadTranslation("command-non-existing", true);
+		lTrans.commandHelpMessage = loadTranslation("command-help-message", true);
 		getLogger().log(Level.INFO, "Translations parsed.");
 	}
 
@@ -117,7 +120,8 @@ public class ClutchesPracticePlugin extends JavaPlugin {
 		loadArmorStandsConf();
 		cleanupUnusedRefs();
 		Bukkit.getPluginManager().registerEvents(new EventsHandlerClp(this, lConfig, lTrans), this);
-		getCommand("summonhelper").setExecutor(new CommandsHandler(this, lConfig, lTrans));
+		getCommand("clutchespractice").setExecutor(new CommandHandler(this, lConfig, lTrans));
+		getCommand("clutchespractice").setTabCompleter(new CommandTabCompleter());
 	}
 
 	@Override
