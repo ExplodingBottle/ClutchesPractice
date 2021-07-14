@@ -13,6 +13,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerArmorStandManipulateEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
@@ -68,6 +69,16 @@ public class EventsHandlerClp implements Listener {
 						damager.sendMessage(lTrans.noPermissions.replace("${perm}", "clp.removehelper"));
 					}
 				}
+			}
+		}
+	}
+
+	@EventHandler(priority = EventPriority.LOWEST)
+	public void onPlayerDropItem(PlayerDropItemEvent e) {
+		if (config.activeWorlds.contains(e.getPlayer().getWorld().getName())) {
+			if (config.preventItemDropping && !e.getPlayer().isOp()) {
+				e.setCancelled(true);
+				e.getPlayer().sendMessage(lTrans.noDropping);
 			}
 		}
 	}

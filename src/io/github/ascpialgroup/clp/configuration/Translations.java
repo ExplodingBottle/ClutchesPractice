@@ -10,4 +10,5 @@ public class Translations {
 	public String nearSpawnPlacing;
 	public String tryAgain;
 	public String prefix;
+	public String noDropping;
 }

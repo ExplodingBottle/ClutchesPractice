@@ -39,6 +39,9 @@ command-to-exec-joining: []
 # command-to-exec-leaving: Commands that will be executed when leaving active worlds.
 command-to-exec-leaving: []
 
+# prevent-item-dropping: Is the player allowed to drop items.
+prevent-item-dropping: true
+
 # Messages
 no-permission: Sorry, you need permission ${perm} to do this.
 console-summoning: You need to be a player to summon the helper armor stand.
@@ -47,6 +50,7 @@ helper-added: You have added an helper.
 helper-removed: You have removed an helper.
 non-active-world: You need to set the world ${world} as active to continue.
 near-spawn-placing: You cannot place a block that near from the spawn.
+no-drop: You are not allowed to drop items.
 try-again: Try again.
 
 # prefix: The prefix to put on each message.

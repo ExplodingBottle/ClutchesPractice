@@ -1,15 +1,10 @@
 package io.github.ascpialgroup.clp.configuration;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Material;
 
 public class LoadedConfiguration {
-
-	public LoadedConfiguration() {
-		activeWorlds = new ArrayList<>();
-	}
 
 	public List<String> activeWorlds;
 	public boolean preventPlayerDamages;
@@ -24,5 +19,6 @@ public class LoadedConfiguration {
 	public int blocksAllowed;
 	public List<String> commandsToExecJoin;
 	public List<String> commandsToExecLeave;
+	public boolean preventItemDropping;
 
 }

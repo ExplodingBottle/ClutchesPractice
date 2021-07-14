@@ -59,6 +59,7 @@ public class ClutchesPracticePlugin extends JavaPlugin {
 		lTrans.nonActiveWorld = loadTranslation("non-active-world", true);
 		lTrans.nearSpawnPlacing = loadTranslation("near-spawn-placing", true);
 		lTrans.tryAgain = loadTranslation("try-again", true);
+		lTrans.noDropping = loadTranslation("no-drop", true);
 		getLogger().log(Level.INFO, "Translations parsed.");
 	}
 
@@ -78,6 +79,7 @@ public class ClutchesPracticePlugin extends JavaPlugin {
 		lConfig.blocksAllowed = config.getInt("blocks-allowed");
 		lConfig.commandsToExecJoin = config.getStringList("command-to-exec-joining");
 		lConfig.commandsToExecLeave = config.getStringList("command-to-exec-leaving");
+		lConfig.preventItemDropping = config.getBoolean("prevent-item-dropping");
 		getLogger().log(Level.INFO, "Configuration parsed.");
 
 	}
