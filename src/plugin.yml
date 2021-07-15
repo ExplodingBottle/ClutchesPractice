@@ -9,7 +9,7 @@ website: ascpialgroup.github.io
 commands:
   clutchespractice:
     description: This command allows you to do everything with this plugin.
-    usage: /<command>
+    usage: /<command> <option>
     permission: clp.maincommand
     permission-message: Sorry, you need permission <permission> to do this.
     aliases:

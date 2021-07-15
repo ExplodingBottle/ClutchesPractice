@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -119,7 +118,7 @@ public class ClutchesPracticePlugin extends JavaPlugin {
 		loadTranslations();
 		loadArmorStandsConf();
 		cleanupUnusedRefs();
-		Bukkit.getPluginManager().registerEvents(new EventsHandlerClp(this, lConfig, lTrans), this);
+		getServer().getPluginManager().registerEvents(new EventsHandlerClp(this, lConfig, lTrans), this);
 		getCommand("clutchespractice").setExecutor(new CommandHandler(this, lConfig, lTrans));
 		getCommand("clutchespractice").setTabCompleter(new CommandTabCompleter());
 	}
